@@ -38,8 +38,7 @@ public class CursoView {
                     cursoJava.infoCurso();//exibir info
                     break;
                 case 3:
-                    cursoJava.lancarNotas();
-
+                    cursoJava.notaAlunos();
                     break;
                 case 4:
                     break;

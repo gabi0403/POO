@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Materiais | Sistema de Estoque</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div th:include="~{fragments/header :: header}"></div>
+
+    <main class="senai-main">
+        <section class="senai-hero">
+            <div class="senai-shell">
+                <div class="senai-card" style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h1 class="senai-title">Lista de Materiais</h1>
+                            <p class="senai-subtitle">Controle de itens de consumo e laboratório.</p>
+                        </div>
+                        <a href="#" class="senai-button">+ Novo Material</a>
+                    </div>
+
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                        <thead>
+                            <tr style="background-color: var(--senai-gray-200); text-align: left;">
+                                <th style="padding: 12px; border-bottom: 2px solid var(--senai-red);">ID</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--senai-red);">Nome</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--senai-red);">Categoria</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--senai-red);">Quantidade</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--senai-red);">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="material : ${materiais}" style="border-bottom: 1px solid var(--senai-gray-200);">
+                                <td style="padding: 12px;" th:text="${material.id}">1</td>
+                                <td style="padding: 12px;" th:text="${material.nome}">Papel A4</td>
+                                <td style="padding: 12px;" th:text="${material.categoria != null ? material.categoria.nome : 'Sem Categoria'}">Escritório</td>
+                                <td style="padding: 12px;">
+                                    <span th:text="${material.quantidade}" 
+                                          th:style="${material.quantidade < 5} ? 'color: red; font-weight: bold;' : 'color: black;'">0</span>
+                                </td>
+                                <td style="padding: 12px;">
+                                    <a href="#" style="color: var(--senai-red); text-decoration: none; font-weight: bold;">Editar</a>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(materiais)}">
+                                <td colspan="5" style="padding: 20px; text-align: center; color: var(--senai-gray-900);">
+                                    Nenhum material cadastrado no estoque.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 20px;">
+                        <a th:href="@{/app}" class="senai-link">← Voltar ao Painel</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:include="~{fragments/footer :: footer}"></div>
+</body>
+</html>

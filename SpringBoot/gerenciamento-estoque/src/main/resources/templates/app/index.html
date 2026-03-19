@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Área Interna | Sistema de Estoque</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div th:include="~{fragments/header :: header}"></div>
+
+    <main class="senai-main">
+        <section class="senai-hero">
+            <div class="senai-shell" style="justify-content:center;">
+                <div class="senai-card" style="width: 100%;">
+                    <h1 class="senai-title" style="font-size: 22px;">Painel de Controle</h1>
+                    <p class="senai-subtitle" style="margin-top: 6px;">Bem-vindo ao sistema de gerenciamento escolar.</p>
+
+                    <div class="senai-actions" style="margin-top: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        
+                        <div class="senai-card" style="text-align: center;">
+                            <h3>Materiais</h3>
+                            <p>Gerencie o estoque de consumo.</p>
+                            <a class="senai-button" th:href="@{/app/estoque/materiais}">Ver Estoque</a>
+                        </div>
+
+                        <div class="senai-card" style="text-align: center;">
+                            <h3>Patrimônio</h3>
+                            <p>Controle de ativos fixos.</p>
+                            <a class="senai-button" href="#">Em breve</a>
+                        </div>
+
+                    </div>
+
+                    <hr style="margin: 25px 0; border: 0; border-top: 1px solid #E5E7EB;"/>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p th:if="${nif}">Logado como: <strong th:text="${nif}"></strong></p>
+                        <a class="senai-link" th:href="@{/auth/logout}" style="color: var(--senai-red);">Sair do Sistema</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:include="~{fragments/footer :: footer}"></div>
+</body>
+</html>
